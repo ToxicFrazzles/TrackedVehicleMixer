@@ -17,21 +17,20 @@ class CircularInputTestCase(unittest.TestCase):
         }
         for direction, (x, y, l, r) in directions.items():
             with self.subTest(direction=direction):
-                left, right = self.mixer.mix(x, y)
+                left, right = self.mixer.advanced_mix(x, y)
                 self.assertAlmostEqual(l, left)
                 self.assertAlmostEqual(r, right)
 
     def test_output_domain(self):
         for i in range(360):
-            with self.subTest(angle=i):
-                theta = math.radians(i)
-                x = math.cos(theta)
-                y = math.sin(theta)
-                l, r = self.mixer.mix(x, y)
-                self.assertLessEqual(l, 1.0)
-                self.assertLessEqual(r, 1.0)
-                self.assertGreaterEqual(l, -1.0)
-                self.assertGreaterEqual(r, -1.0)
+            theta = math.radians(i)
+            x = math.cos(theta)
+            y = math.sin(theta)
+            l, r = self.mixer.simple_mix(x, y)
+            self.assertLessEqual(l, 1.0)
+            self.assertLessEqual(r, 1.0)
+            self.assertGreaterEqual(l, -1.0)
+            self.assertGreaterEqual(r, -1.0)
 
 
 if __name__ == '__main__':

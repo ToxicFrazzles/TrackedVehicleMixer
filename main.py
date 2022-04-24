@@ -13,7 +13,7 @@ if __name__ == "__main__":
         angles.append(theta)
         x = math.cos(theta)
         y = math.sin(theta)
-        l, r = mixer.mix(x, y)
+        l, r = mixer.advanced_mix(x, y)
         xs.append(x)
         ys.append(y)
         ls.append(l)
@@ -23,8 +23,8 @@ if __name__ == "__main__":
     plt.show()
     plt.plot(angles, ls)
     plt.plot(angles, rs)
-    plt.axvline(0)              # Full right
-    plt.axvline(math.pi)        # Full left
-    plt.axvline(math.pi/2)      # Backward
-    plt.axvline(3*math.pi/2)    # Forward
+    plt.axvline(0, color='red', linestyle=':', label='Right')
+    plt.axvline(math.pi, color='red', linestyle=':', label='Left')
+    plt.axvline(math.pi/2, color='red', linestyle=':', label='Forward')
+    plt.axvline(3*math.pi/2, color='red', linestyle=':', label='Backward')
     plt.show()
